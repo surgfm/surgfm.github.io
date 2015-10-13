@@ -110,13 +110,17 @@ var drawBg = function() {
 var Player = function() {
   this.x = 0;
   this.y = CANVAS_HEIGHT/2;
-  this.w = 25;
-  this.h = 25;
   this.img = $("#max")[0];
+  this.updateSize();
   this.up = false;
   this.down = false;
   this.shoot = true;
   this.speed = 30;
+};
+
+Player.prototype.updateSize = function() {
+  this.w = this.img.width;
+  this.h = this.img.height;
 };
 
 Player.prototype.draw = function() {
@@ -125,9 +129,9 @@ Player.prototype.draw = function() {
 };
 
 Player.prototype.update = function() {
-  if (this.up) {
+  if (this.up && this.y > 0) {
     this.y -= this.speed;
-  } else if (this.down) {
+  } else if (this.down && this.y + this.h < CANVAS_HEIGHT) {
     this.y += this.speed;
   }
   if (this.shoot) {
@@ -140,9 +144,11 @@ Player.prototype.update = function() {
   this.shoot = false;
   if (score >= 1000) {
     this.img = $("#tighe")[0];
+    this.updateSize();
   }
   if (score >= 2000) {
     this.img = $("#alex")[0];
+    this.updateSize();
   }
 };
 
