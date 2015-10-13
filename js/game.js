@@ -19,7 +19,6 @@ function main() {
 }
 
 var test = function() {
-  console.log("A");
   r1 = {
     "x": 0,
     "y": 0,
@@ -35,8 +34,6 @@ var test = function() {
     "y": 100,
     "w": 5,
     "h": 5};
-  console.log(intersects(r1, r2));
-  console.log(intersects(r1, r3));
 };
 
 
@@ -48,7 +45,6 @@ var intersects = function(a, b) {
 };
 
 var handleKey = function(evt) {
-  console.log(evt.which);
   if (evt.which == 38) { // move up
     p.up = true;
     p.down = false;
@@ -142,9 +138,11 @@ Player.prototype.update = function() {
   this.up = false;
   this.down = false;
   this.shoot = false;
-  if (score > 1000) {
+  if (score >= 1000) {
+    this.img = $("#tighe")[0];
+  }
+  if (score >= 2000) {
     this.img = $("#alex")[0];
-    console.log("SUP");
   }
 };
 
